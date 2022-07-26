@@ -1,4 +1,4 @@
-package com.applecompose.plantdiary.theprospector.presentation.components
+package com.applecompose.plantdiary.theprospector.presentation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,10 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.applecompose.plantdiary.theprospector.R
+import com.applecompose.plantdiary.theprospector.presentation.components.NoteInputText
 import com.applecompose.plantdiary.theprospector.ui.theme.newBackgroundColor
 
 @Composable
-fun HomeTitle() {
+fun NoteScreen() {
 	var title by remember { mutableStateOf("")}
 	var description by remember { mutableStateOf("")}
 	val context = LocalContext.current
@@ -85,8 +86,9 @@ fun HomeTitle() {
 		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
 		NoteInputText(
 			modifier = Modifier
-				.padding(top = 9.dp)
-				.padding(8.dp),
+				.fillMaxWidth()
+				.padding(top = 6.dp)
+				.padding(6.dp),
 			text = title,
 			label = "Title of Prospect",
 			onTextChange = {
@@ -95,8 +97,9 @@ fun HomeTitle() {
 		)
 		NoteInputText(
 			modifier = Modifier
-				.padding(top = 9.dp)
-				.padding(8.dp),
+				.fillMaxWidth()
+				.padding(top = 6.dp, bottom = 6.dp)
+				.padding(6.dp),
 			text = description,
 			label = "Describe the Prospect",
 			onTextChange = {
@@ -117,6 +120,6 @@ fun HomeTitlePreview() {
 		modifier = Modifier.fillMaxSize(),
 		color = MaterialTheme.colors.newBackgroundColor
 	) {
-		HomeTitle()
+		NoteScreen()
 	}
 }
