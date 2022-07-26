@@ -1,16 +1,13 @@
 package com.applecompose.plantdiary.theprospector.presentation.components
 
-import android.graphics.Paint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Map
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -20,10 +17,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.applecompose.plantdiary.theprospector.R
 import com.applecompose.plantdiary.theprospector.ui.theme.newBackgroundColor
-import java.util.Map
 
 @Composable
 fun HomeTitle() {
+	var title by remember { mutableStateOf("")}
+	var description by remember { mutableStateOf("")}
+	val context = LocalContext.current
 
 	Column(
 		modifier = Modifier
@@ -50,7 +49,11 @@ fun HomeTitle() {
 		) {
 			Icon(
 				painter = painterResource(id = R.drawable.ic_baseline_my_location_24),
-				contentDescription = "Location icon"
+				contentDescription = "Location icon",
+				modifier = Modifier
+					.clickable {
+
+					}
 
 
 			)
@@ -69,12 +72,40 @@ fun HomeTitle() {
 			) {
 				Icon(
 					painter = painterResource(id = R.drawable.ic_delete),
-					contentDescription = "Delete"
+					contentDescription = "Delete",
+					modifier = Modifier
+						.clickable {  }
 
 
 				)
 			}
+
 		}
+		//input text goes here
+		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
+		NoteInputText(
+			modifier = Modifier
+				.padding(top = 9.dp)
+				.padding(8.dp),
+			text = title,
+			label = "Title of Prospect",
+			onTextChange = {
+				title = it
+			}
+		)
+		NoteInputText(
+			modifier = Modifier
+				.padding(top = 9.dp)
+				.padding(8.dp),
+			text = description,
+			label = "Describe the Prospect",
+			onTextChange = {
+				description = it
+			}
+		)
+
+
+		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
 	}
 }
 
