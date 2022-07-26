@@ -7,15 +7,30 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColors(
-	primary = Purple200,
-	primaryVariant = Purple700,
-	secondary = Teal200
+	primary = DarkPrimary,
+	primaryVariant = DarkPrimaryVariant,
+	secondary = DarkSecondary,
+	onPrimary = DarkOnPrimary,
+	onSecondary = DarkOnSecondary,
+	onSurface = DarkOnSurface,
 )
 
 private val LightColorPalette = lightColors(
-	primary = Purple500,
-	primaryVariant = Purple700,
-	secondary = Teal200
+	primary = Primary,
+	primaryVariant = PrimaryVariant,
+	secondary = Secondary,
+	onSurface = OnSurface,
+
+
+
+	/* Other default colors to override
+    background = Color.White,
+    surface = Color.White,
+
+
+    */
+)
+
 
 	/* Other default colors to override
     background = Color.White,
@@ -25,7 +40,9 @@ private val LightColorPalette = lightColors(
     onBackground = Color.Black,
     onSurface = Color.Black,
     */
-)
+
+
+
 
 @Composable
 fun TheProspectorTheme(
