@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.applecompose.plantdiary.theprospector.R
 import com.applecompose.plantdiary.theprospector.data.model.Note
 import com.applecompose.plantdiary.theprospector.ui.theme.cardBackground
+import com.applecompose.plantdiary.theprospector.utils.formatDate
 import java.time.format.DateTimeFormatter
 
 @Composable
@@ -52,7 +53,7 @@ fun NoteRow(
 				style = MaterialTheme.typography.subtitle1
 			)
 			Text(
-				text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
+				text = formatDate(note.entryDate.time),
 				style = MaterialTheme.typography.caption
 			)
 
