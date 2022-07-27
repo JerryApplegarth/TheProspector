@@ -1,5 +1,6 @@
 package com.applecompose.plantdiary.theprospector.presentation.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,12 +19,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.applecompose.plantdiary.theprospector.R
 import com.applecompose.plantdiary.theprospector.data.NoteDataDummy
 import com.applecompose.plantdiary.theprospector.data.model.Note
 import com.applecompose.plantdiary.theprospector.presentation.components.NoteInputText
+import com.applecompose.plantdiary.theprospector.presentation.components.NoteRow
 import com.applecompose.plantdiary.theprospector.ui.theme.cardBackground
 import com.applecompose.plantdiary.theprospector.ui.theme.newBackgroundColor
 import java.time.format.DateTimeFormatter
@@ -77,18 +80,7 @@ fun NoteScreen(
 				Text(text = "Longitude: ")
 
 			}
-			Row(
-				modifier = Modifier
-					.fillMaxWidth(),
-				horizontalArrangement = Arrangement.End
-			) {
-//				Icon(
-//					painter = painterResource(id = R.drawable.ic_delete),
-//					contentDescription = "Delete",
-//					modifier = Modifier
-//						.clickable {  }
-//				)
-			}
+
 		}
 		//input text goes here
 		Divider(color = MaterialTheme.colors.secondary,
@@ -132,12 +124,26 @@ fun NoteScreen(
 				modifier = Modifier
 					.clickable {
 						if (title.isNotEmpty() && description.isNotEmpty()) {
-							//save to list
+							onAddNote(Note(
+								title = title,
+								description = description))
 							title = ""
 							description = ""
+							Toast.makeText(
+								context, "Your prospect was added",
+								Toast.LENGTH_SHORT).show()
+
 						}
 
 					}
+				)
+			Text(
+				text = "Add a picture ",
+				modifier = Modifier
+					.padding(end = 48.dp)
+					.width(200.dp),
+				textAlign = TextAlign.End
+
 				)
 
 			Icon(
@@ -156,63 +162,15 @@ fun NoteScreen(
 			items(notes) { note ->
 				NoteRow(
 					note = note,
-					onNoteClicked = {})
+					onNoteClicked = {
+						onRemoveNote(note)
+					})
 				
 			}
 		}
-
-
-
 	}
 }
 
-@Composable
-fun NoteRow(
-	modifier: Modifier = Modifier,
-	note: Note,
-	onNoteClicked: (Note) -> Unit
-	) {
-	Surface(
-		modifier
-			.padding(4.dp)
-			.clip(RoundedCornerShape(16.dp))
-			.fillMaxWidth(),
-		color = MaterialTheme.colors.cardBackground,
-		elevation = 6.dp
-	) {
-		Column(
-			modifier
-				.padding(
-					horizontal = 14.dp,
-					vertical = 6.dp),
-			horizontalAlignment = Alignment.Start
-		) {
-			Text(
-				text = note.title,
-				style = MaterialTheme.typography.subtitle2
-				)
-			Text(
-				text = note.description,
-				style = MaterialTheme.typography.subtitle1
-				)
-			Text(text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")))
-			Icon(
-				painter = painterResource(id = R.drawable.ic_delete),
-				contentDescription = "Delete",
-				modifier = Modifier
-					.align(Alignment.End)
-					.clickable { }
-			)
-
-
-
-
-		}
-
-	}
-
-
-}
 
 
 @Preview(showSystemUi = true, showBackground = true)
