@@ -3,31 +3,37 @@ package com.applecompose.plantdiary.theprospector.presentation.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.applecompose.plantdiary.theprospector.R
-import com.applecompose.plantdiary.theprospector.presentation.components.BottomBar
+import com.applecompose.plantdiary.theprospector.data.NoteDataDummy
+import com.applecompose.plantdiary.theprospector.data.model.Note
 import com.applecompose.plantdiary.theprospector.presentation.components.NoteInputText
 import com.applecompose.plantdiary.theprospector.ui.theme.cardBackground
 import com.applecompose.plantdiary.theprospector.ui.theme.newBackgroundColor
+import java.time.format.DateTimeFormatter
 
 @Composable
-fun NoteScreen() {
+fun NoteScreen(
+	notes: List<Note>,
+	onAddNote: (Note) -> Unit,
+	onRemoveNote: (Note) -> Unit
+) {
 	var title by remember { mutableStateOf("")}
 	var description by remember { mutableStateOf("")}
 	val context = LocalContext.current
@@ -46,7 +52,8 @@ fun NoteScreen() {
 		backgroundColor = MaterialTheme.colors.cardBackground
 		)
 
-		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
+		Divider(color = MaterialTheme.colors.secondary,
+			thickness = 2.dp)
 		Spacer(modifier = Modifier.height(6.dp))
 		Text(text = "New Prospect: ")
 		Spacer(modifier = Modifier.height(12.dp))
@@ -75,16 +82,17 @@ fun NoteScreen() {
 					.fillMaxWidth(),
 				horizontalArrangement = Arrangement.End
 			) {
-				Icon(
-					painter = painterResource(id = R.drawable.ic_delete),
-					contentDescription = "Delete",
-					modifier = Modifier
-						.clickable {  }
-				)
+//				Icon(
+//					painter = painterResource(id = R.drawable.ic_delete),
+//					contentDescription = "Delete",
+//					modifier = Modifier
+//						.clickable {  }
+//				)
 			}
 		}
 		//input text goes here
-		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
+		Divider(color = MaterialTheme.colors.secondary,
+			thickness = 2.dp)
 		NoteInputText(
 			modifier = Modifier
 				.fillMaxWidth()
@@ -123,6 +131,11 @@ fun NoteScreen() {
 				contentDescription = "Save icon",
 				modifier = Modifier
 					.clickable {
+						if (title.isNotEmpty() && description.isNotEmpty()) {
+							//save to list
+							title = ""
+							description = ""
+						}
 
 					}
 				)
@@ -138,11 +151,67 @@ fun NoteScreen() {
 
 		}
 		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
-		Text(text = "testing")
+		Spacer(modifier = Modifier.height(6.dp))
+		LazyColumn {
+			items(notes) { note ->
+				NoteRow(
+					note = note,
+					onNoteClicked = {})
+				
+			}
+		}
 
 
 
 	}
+}
+
+@Composable
+fun NoteRow(
+	modifier: Modifier = Modifier,
+	note: Note,
+	onNoteClicked: (Note) -> Unit
+	) {
+	Surface(
+		modifier
+			.padding(4.dp)
+			.clip(RoundedCornerShape(16.dp))
+			.fillMaxWidth(),
+		color = MaterialTheme.colors.cardBackground,
+		elevation = 6.dp
+	) {
+		Column(
+			modifier
+				.padding(
+					horizontal = 14.dp,
+					vertical = 6.dp),
+			horizontalAlignment = Alignment.Start
+		) {
+			Text(
+				text = note.title,
+				style = MaterialTheme.typography.subtitle2
+				)
+			Text(
+				text = note.description,
+				style = MaterialTheme.typography.subtitle1
+				)
+			Text(text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")))
+			Icon(
+				painter = painterResource(id = R.drawable.ic_delete),
+				contentDescription = "Delete",
+				modifier = Modifier
+					.align(Alignment.End)
+					.clickable { }
+			)
+
+
+
+
+		}
+
+	}
+
+
 }
 
 
@@ -153,6 +222,9 @@ fun HomeTitlePreview() {
 		modifier = Modifier.fillMaxSize(),
 		color = MaterialTheme.colors.newBackgroundColor
 	) {
-		NoteScreen()
+		NoteScreen(
+			notes = NoteDataDummy().loadNotes(),
+			onAddNote = {},
+			onRemoveNote = {})
 	}
 }

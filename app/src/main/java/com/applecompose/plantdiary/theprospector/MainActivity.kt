@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.applecompose.plantdiary.theprospector.data.NoteDataDummy
 import com.applecompose.plantdiary.theprospector.presentation.screens.NoteScreen
 import com.applecompose.plantdiary.theprospector.ui.theme.TheProspectorTheme
 import com.applecompose.plantdiary.theprospector.ui.theme.newBackgroundColor
@@ -32,7 +33,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun HomeScreen() {
-	NoteScreen()
+	NoteScreen(
+		notes = NoteDataDummy().loadNotes(),
+		onAddNote = {},
+		onRemoveNote = {}
+		)
 
 
 
