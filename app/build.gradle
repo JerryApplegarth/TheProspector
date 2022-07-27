@@ -61,7 +61,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
     //icons
-    //implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
     //animation
     implementation "androidx.compose.animation:animation-core:$compose_version"
 }

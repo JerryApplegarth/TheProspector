@@ -4,11 +4,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.SnackbarDefaults.backgroundColor
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PictureInPicture
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -16,7 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.applecompose.plantdiary.theprospector.R
+import com.applecompose.plantdiary.theprospector.presentation.components.BottomBar
 import com.applecompose.plantdiary.theprospector.presentation.components.NoteInputText
+import com.applecompose.plantdiary.theprospector.ui.theme.cardBackground
 import com.applecompose.plantdiary.theprospector.ui.theme.newBackgroundColor
 
 @Composable
@@ -33,13 +40,12 @@ fun NoteScreen() {
 		horizontalAlignment = Alignment.Start,
 		verticalArrangement = Arrangement.Top
 	) {
-		Text(
-			text = "The Prospector",
-			fontSize = 24.sp,
-			fontWeight = FontWeight.Bold,
-			fontStyle = FontStyle.Normal,
-			fontFamily = FontFamily.SansSerif
+		TopAppBar(title = {
+			Text(text = stringResource(id = R.string.app_name))
+		},
+		backgroundColor = MaterialTheme.colors.cardBackground
 		)
+
 		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
 		Spacer(modifier = Modifier.height(6.dp))
 		Text(text = "New Prospect: ")
@@ -55,8 +61,6 @@ fun NoteScreen() {
 					.clickable {
 
 					}
-
-
 			)
 			Column(
 				modifier = Modifier
@@ -76,11 +80,8 @@ fun NoteScreen() {
 					contentDescription = "Delete",
 					modifier = Modifier
 						.clickable {  }
-
-
 				)
 			}
-
 		}
 		//input text goes here
 		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
@@ -108,7 +109,39 @@ fun NoteScreen() {
 		)
 
 
+		// my cards goes here a lazy column
+		Row(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(6.dp)
+				.padding(16.dp, end = 16.dp),
+			horizontalArrangement = Arrangement.SpaceBetween
+		) {
+
+			Icon(
+				imageVector = Icons.Default.Save,
+				contentDescription = "Save icon",
+				modifier = Modifier
+					.clickable {
+
+					}
+				)
+
+			Icon(
+				imageVector = Icons.Default.PictureInPicture,
+				contentDescription = "Add Picture",
+				modifier = Modifier
+					.clickable {
+
+				}
+			)
+
+		}
 		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
+		Text(text = "testing")
+
+
+
 	}
 }
 
