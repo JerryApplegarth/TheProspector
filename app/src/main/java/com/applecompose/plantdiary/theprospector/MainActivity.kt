@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
 				// A surface container using the 'background' color from the theme
 				Surface(
 					modifier = Modifier.fillMaxSize(),
-					color = MaterialTheme.colors.newBackgroundColor
+					color = MaterialTheme.colors.background
 				) {
 					//second way to substantiate view model
 					// val noteViewModel = viewModel<NoteViewModel>()
@@ -54,11 +54,3 @@ fun HomeScreen(noteViewModel: NoteViewModel) {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-	TheProspectorTheme {
-
-
-	}
-}

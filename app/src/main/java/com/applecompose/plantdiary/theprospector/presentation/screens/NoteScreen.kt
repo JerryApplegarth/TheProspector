@@ -6,16 +6,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -27,9 +24,7 @@ import com.applecompose.plantdiary.theprospector.data.NoteDataDummy
 import com.applecompose.plantdiary.theprospector.data.model.Note
 import com.applecompose.plantdiary.theprospector.presentation.components.NoteInputText
 import com.applecompose.plantdiary.theprospector.presentation.components.NoteRow
-import com.applecompose.plantdiary.theprospector.ui.theme.cardBackground
-import com.applecompose.plantdiary.theprospector.ui.theme.newBackgroundColor
-import java.time.format.DateTimeFormatter
+import com.applecompose.plantdiary.theprospector.ui.theme.TheProspectorTheme
 
 @Composable
 fun NoteScreen(
@@ -45,17 +40,17 @@ fun NoteScreen(
 		modifier = Modifier
 			.fillMaxSize()
 			.padding(12.dp)
-			.background(MaterialTheme.colors.newBackgroundColor),
+			.background(MaterialTheme.colors.background),
 		horizontalAlignment = Alignment.Start,
 		verticalArrangement = Arrangement.Top
 	) {
 		TopAppBar(title = {
 			Text(text = stringResource(id = R.string.app_name))
 		},
-		backgroundColor = MaterialTheme.colors.cardBackground
+		backgroundColor = MaterialTheme.colors.primary
 		)
 
-		Divider(color = MaterialTheme.colors.secondary,
+		Divider(color = MaterialTheme.colors.primary,
 			thickness = 2.dp)
 		Spacer(modifier = Modifier.height(6.dp))
 		Text(text = "New Prospect: ")
@@ -83,7 +78,7 @@ fun NoteScreen(
 
 		}
 		//input text goes here
-		Divider(color = MaterialTheme.colors.secondary,
+		Divider(color = MaterialTheme.colors.primary,
 			thickness = 2.dp)
 		NoteInputText(
 			modifier = Modifier
@@ -156,7 +151,7 @@ fun NoteScreen(
 			)
 
 		}
-		Divider(color = MaterialTheme.colors.secondary, thickness = 2.dp)
+		Divider(color = MaterialTheme.colors.primary, thickness = 2.dp)
 		Spacer(modifier = Modifier.height(6.dp))
 		LazyColumn {
 			items(notes) { note ->
@@ -176,13 +171,16 @@ fun NoteScreen(
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun HomeTitlePreview() {
-	Surface(
-		modifier = Modifier.fillMaxSize(),
-		color = MaterialTheme.colors.newBackgroundColor
-	) {
-		NoteScreen(
-			notes = NoteDataDummy().loadNotes(),
-			onAddNote = {},
-			onRemoveNote = {})
+	TheProspectorTheme {
+		// A surface container using the 'background' color from the theme
+		Surface(
+			modifier = Modifier.fillMaxSize(),
+			color = MaterialTheme.colors.background){
+			NoteScreen(
+				notes = NoteDataDummy().loadNotes(),
+				onAddNote = {},
+				onRemoveNote = {})
+		}
+
 	}
 }
