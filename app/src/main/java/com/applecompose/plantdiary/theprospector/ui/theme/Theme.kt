@@ -23,7 +23,7 @@ private val LightColorPalette = lightColors(
 	background = Background2,
 	surface = Background2,
 
-	onPrimary = Black2,
+	onPrimary = OnPrimary,
 	onSecondary = Black2,
 	onBackground = Black2,
 	onSurface = Black2,
