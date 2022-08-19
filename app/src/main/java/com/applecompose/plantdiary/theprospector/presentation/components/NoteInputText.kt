@@ -3,8 +3,6 @@ package com.applecompose.plantdiary.theprospector.presentation.components
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.colors
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -26,13 +24,17 @@ fun NoteInputText(
 	val focusManager = LocalFocusManager.current
 
 	TextField(
+
+
 		value = text,
 		onValueChange = onTextChange,
 		label = { Text(text = label)},
 
 		colors = TextFieldDefaults.textFieldColors(
-			backgroundColor = MaterialTheme.colors.cardBackground
+			backgroundColor = MaterialTheme.colors.cardBackground,
+
 		),
+
 		keyboardOptions = KeyboardOptions.Default.copy(
 			imeAction = ImeAction.Done
 		),
@@ -41,6 +43,7 @@ fun NoteInputText(
 			focusManager.clearFocus()
 		}),
 		modifier = modifier
+
 	)
 
 }

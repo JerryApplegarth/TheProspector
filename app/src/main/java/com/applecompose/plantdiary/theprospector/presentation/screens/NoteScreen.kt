@@ -8,14 +8,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,11 @@ fun NoteScreen(
 	onEditNote: (Note) -> Unit
 
 ) {
+
+	val textState = remember {
+		mutableStateOf(TextFieldValue)
+	}
+
 	var title by remember { mutableStateOf("") }
 	var description by remember { mutableStateOf("") }
 	val context = LocalContext.current
@@ -61,17 +67,12 @@ fun NoteScreen(
 		Text(text = "New Prospect: ")
 		Spacer(modifier = Modifier.height(12.dp))
 		Row(
-			horizontalArrangement = Arrangement.Start,
-			verticalAlignment = Alignment.CenterVertically
-		) {
-			Icon(
-				painter = painterResource(id = R.drawable.ic_baseline_my_location_24),
-				contentDescription = "Location icon",
-				modifier = Modifier
-					.clickable {
 
-					}
-			)
+			horizontalArrangement = Arrangement.SpaceBetween,
+			verticalAlignment = Alignment.CenterVertically,
+			modifier = Modifier.fillMaxWidth()
+		) {
+
 			Column(
 				modifier = Modifier
 					.padding(12.dp)
@@ -80,8 +81,18 @@ fun NoteScreen(
 				Text(text = "Longitude: ")
 
 			}
+			Icon(
+				imageVector = Icons.Default.Map,
+				contentDescription = "Map icon",
+				modifier = Modifier
+					.padding(end = 16.dp)
+					.clickable {
+
+					}
+				)
 
 		}
+
 		//input text goes here
 		Divider(
 			color = MaterialTheme.colors.primary,
@@ -103,11 +114,14 @@ fun NoteScreen(
 				.fillMaxWidth()
 				.padding(top = 6.dp, bottom = 6.dp)
 				.padding(6.dp),
+
+
 			text = description,
 			label = "Describe the Prospect",
 			onTextChange = {
 				description = it
-			}
+			},
+
 		)
 		// my cards goes here a lazy column
 		Row(
@@ -166,7 +180,15 @@ fun NoteScreen(
 						onRemoveNote(note)
 					},
 					onEditNoteClicked = {
-						onEditNote(note)
+						onEditNote(
+							Note(
+								title = title + textState.value.toString(),
+								description = description + textState.value.toString()
+							)
+						)
+						title = ""
+						description = ""
+						Toast.makeText(context, "Your text was edited", Toast.LENGTH_SHORT).show()
 
 
 					}
