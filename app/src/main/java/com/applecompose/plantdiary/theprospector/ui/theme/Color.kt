@@ -11,32 +11,31 @@ val Teal200 = Color(0xFF03DAC5)
 
 
 
+
+
 //Light
-val Primary = Color(0xff00695c)
-val Secondary = Color(0xFf37474f)
-val OnSurfaceVariant = Color(0xFFc25e00)
-val Black2 = Color(0xFF201a17)
-val OnPrimary = Color(0xFFffc745)
-val OnSecondary = Color(0xFFffc745)
-val PrimaryVariant = Color(0xFFF8A337)
-val NewBackground = Color(0xFF819ca9)
-val CardBackground = Color(0xFFffbd45)
+val Primary = Color(0xFf00897b)
+val Secondary = Color(0xff4db6ac)
+val OnSurfaceVariant = Color(0xFF52443c)
+val OnSurfaceBlack = Color(0xFF201a17)
+val OnPrimaryWhite = Color(0xFFffffff)
+val OnSecondaryWhite = Color(0xFFffffff)
+val PrimaryVariant = Color(0xFF82e9de)
+val NewBackground = Color(0xFFB3E9E4)
+val CardBackground = Color(0xFF54928C)
+val Background = Color(0xFF201a17)
 
 //Dark
-val DarkPrimary = Color(0xffc25e00)
-val DarkSecondary = Color(0xFF29434e)
-val DarkOnSurfaceVariant = Color(0xFFffc745)
-val DarkOnSurface = Color(0xFFffc745)
-val DarkOnPrimary = Color(0xFF201a17)
-val DarkOnSecondary = Color(0xFFffc745)
-val DarkPrimaryVariant = Color(0xFFff9d3f)
-val DarkNewBackground = Color(0xffc25e00)
+val DarkPrimary = Color(0xFF005b4f)
+val DarkSecondary = Color(0xff00867d)
+val DarkOnSurfaceVariant = Color(0xFFd7c2b8)
+val DarkOnSurface = Color(0xFFece0db)
+val DarkOnPrimary = Color(0xFFece0db)
+val DarkOnSecondary = Color(0xFFece0db)
+val DarkPrimaryVariant = Color(0xFF4ebaaa)
+val DarkNewBackground = Color(0xff00867d)
 
-val DarkGreen2 = Color(0xFF13654A)
-val Tan2 = Color(0xFFD6BD91)
-val MyPurple = Color(0xFF940A3D)
-val MediumGrey = Color(0xFFB6C0C8)
-val Background2 = Color(0xFFC5C6C7)
+
 
 
 val Amber200 = Color(0xFFffe54c)
@@ -45,7 +44,6 @@ val Amber700 = Color(0xFFc68400)
 val LightAmber = Color(0xFFffecb3)
 
 val MediumGreen = Color(0xFF3BAE06)
-val DarkGreen = Color(0xFF2E8805)
 
 
 
@@ -67,7 +65,3 @@ val Colors.newBackgroundColor: Color
 val Colors.fontColor: Color
     @Composable
     get() = if (isLight) DarkOnSecondary else DarkOnPrimary
-
-val Colors.iconColor: Color
-    @Composable
-    get() = if (isLight) DarkGreen else DarkGreen

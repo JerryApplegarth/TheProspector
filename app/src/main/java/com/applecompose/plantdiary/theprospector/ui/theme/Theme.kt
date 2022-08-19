@@ -16,17 +16,17 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-	primary = MyPurple,
+	primary = Primary,
 	primaryVariant = PrimaryVariant,
-	secondary = MediumGrey,
+	secondary = Secondary,
 
-	background = Background2,
-	surface = Background2,
+	background = NewBackground,
+	surface = NewBackground,
 
-	onPrimary = OnPrimary,
-	onSecondary = Black2,
-	onBackground = Black2,
-	onSurface = Black2,
+	onPrimary = OnPrimaryWhite,
+	onSecondary = OnSecondaryWhite,
+	onBackground = OnSurfaceBlack,
+	onSurface = OnSurfaceBlack,
 
 
 
