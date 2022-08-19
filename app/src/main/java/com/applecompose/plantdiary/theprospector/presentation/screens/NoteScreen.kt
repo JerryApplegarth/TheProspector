@@ -30,10 +30,12 @@ import com.applecompose.plantdiary.theprospector.ui.theme.TheProspectorTheme
 fun NoteScreen(
 	notes: List<Note>,
 	onAddNote: (Note) -> Unit,
-	onRemoveNote: (Note) -> Unit
+	onRemoveNote: (Note) -> Unit,
+	onEditNote: (Note) -> Unit
+
 ) {
-	var title by remember { mutableStateOf("")}
-	var description by remember { mutableStateOf("")}
+	var title by remember { mutableStateOf("") }
+	var description by remember { mutableStateOf("") }
 	val context = LocalContext.current
 
 	Column(
@@ -44,14 +46,17 @@ fun NoteScreen(
 		horizontalAlignment = Alignment.Start,
 		verticalArrangement = Arrangement.Top
 	) {
-		TopAppBar(title = {
-			Text(text = stringResource(id = R.string.app_name))
-		},
-		backgroundColor = MaterialTheme.colors.primary
+		TopAppBar(
+			title = {
+				Text(text = stringResource(id = R.string.app_name))
+			},
+			backgroundColor = MaterialTheme.colors.primary
 		)
 
-		Divider(color = MaterialTheme.colors.primary,
-			thickness = 2.dp)
+		Divider(
+			color = MaterialTheme.colors.primary,
+			thickness = 2.dp
+		)
 		Spacer(modifier = Modifier.height(6.dp))
 		Text(text = "New Prospect: ")
 		Spacer(modifier = Modifier.height(12.dp))
@@ -78,8 +83,10 @@ fun NoteScreen(
 
 		}
 		//input text goes here
-		Divider(color = MaterialTheme.colors.primary,
-			thickness = 2.dp)
+		Divider(
+			color = MaterialTheme.colors.primary,
+			thickness = 2.dp
+		)
 		NoteInputText(
 			modifier = Modifier
 				.fillMaxWidth()
@@ -102,8 +109,6 @@ fun NoteScreen(
 				description = it
 			}
 		)
-
-
 		// my cards goes here a lazy column
 		Row(
 			modifier = Modifier
@@ -119,35 +124,35 @@ fun NoteScreen(
 				modifier = Modifier
 					.clickable {
 						if (title.isNotEmpty() && description.isNotEmpty()) {
-							onAddNote(Note(
-								title = title,
-								description = description))
+							onAddNote(
+								Note(
+									title = title,
+									description = description
+								)
+							)
 							title = ""
 							description = ""
 							Toast.makeText(
 								context, "Your prospect was added",
-								Toast.LENGTH_SHORT).show()
-
+								Toast.LENGTH_SHORT
+							).show()
 						}
-
 					}
-				)
+			)
 			Text(
 				text = "Add a picture ",
 				modifier = Modifier
 					.padding(end = 48.dp)
 					.width(200.dp),
 				textAlign = TextAlign.End
-
-				)
-
+			)
 			Icon(
 				imageVector = Icons.Default.PictureInPicture,
 				contentDescription = "Add Picture",
 				modifier = Modifier
 					.clickable {
 
-				}
+					}
 			)
 
 		}
@@ -159,13 +164,20 @@ fun NoteScreen(
 					note = note,
 					onNoteClicked = {
 						onRemoveNote(note)
-					})
-				
+					},
+					onEditNoteClicked = {
+						onEditNote(note)
+
+
+					}
+
+				)
+
+
 			}
 		}
 	}
 }
-
 
 
 @Preview(showSystemUi = true, showBackground = true)
@@ -175,11 +187,13 @@ fun HomeTitlePreview() {
 		// A surface container using the 'background' color from the theme
 		Surface(
 			modifier = Modifier.fillMaxSize(),
-			color = MaterialTheme.colors.background){
+			color = MaterialTheme.colors.background
+		) {
 			NoteScreen(
 				notes = NoteDataDummy().loadNotes(),
 				onAddNote = {},
-				onRemoveNote = {})
+				onRemoveNote = {},
+				onEditNote = {})
 		}
 
 	}

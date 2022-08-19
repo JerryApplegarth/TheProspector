@@ -50,7 +50,11 @@ fun HomeScreen(noteViewModel: NoteViewModel) {
 		},
 		onRemoveNote = {
 			noteViewModel.removeNote(it)
-		}
+		},
+		onEditNote = {
+			noteViewModel.updateNote(it)
+		},
+
 	)
 }
 

@@ -1,9 +1,7 @@
 package com.applecompose.plantdiary.theprospector.presentation.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -14,19 +12,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.applecompose.plantdiary.theprospector.R
 import com.applecompose.plantdiary.theprospector.data.model.Note
 import com.applecompose.plantdiary.theprospector.ui.theme.cardBackground
 import com.applecompose.plantdiary.theprospector.utils.formatDate
-import java.time.format.DateTimeFormatter
 
 @Composable
 fun NoteRow(
 	modifier: Modifier = Modifier,
 	note: Note,
-	onNoteClicked: (Note) -> Unit
+	onNoteClicked: (Note) -> Unit,
+	onEditNoteClicked: (Note) -> Unit
 ) {
 	Surface(
 		modifier
@@ -56,16 +53,34 @@ fun NoteRow(
 				text = formatDate(note.entryDate.time),
 				style = MaterialTheme.typography.caption
 			)
-
-			Icon(
-				painter = painterResource(id = R.drawable.ic_delete),
-				contentDescription = "Delete",
+			Row(
 				modifier = Modifier
-					.align(Alignment.End)
-					.clickable {
-						onNoteClicked(note)
-					}
-			)
+					.padding(6.dp)
+					.fillMaxWidth(),
+				verticalAlignment = Alignment.CenterVertically,
+				horizontalArrangement = Arrangement.SpaceBetween
+
+			) {
+				Icon(
+					painter = painterResource(id = R.drawable.ic_edit),
+					contentDescription = "Edit",
+					modifier = Modifier
+
+						.clickable {
+							onEditNoteClicked(note)
+						}
+				)
+				Icon(
+					painter = painterResource(id = R.drawable.ic_delete),
+					contentDescription = "Delete",
+					modifier = Modifier
+
+						.clickable {
+							onNoteClicked(note)
+						}
+				)
+			}
+
 		}
 	}
 }

@@ -15,14 +15,14 @@ val Teal200 = Color(0xFF03DAC5)
 
 //Light
 val Primary = Color(0xFf00897b)
-val Secondary = Color(0xff4db6ac)
+val Secondary = Color(0xFF4BB6AD)
 val OnSurfaceVariant = Color(0xFF52443c)
 val OnSurfaceBlack = Color(0xFF201a17)
 val OnPrimaryWhite = Color(0xFFffffff)
 val OnSecondaryWhite = Color(0xFFffffff)
 val PrimaryVariant = Color(0xFF82e9de)
-val NewBackground = Color(0xFFB3E9E4)
-val CardBackground = Color(0xFF54928C)
+val NewBackground = Color(0xFF7CEBE0)
+val CardBackground = Color(0xFFB2E5EF)
 val Background = Color(0xFF201a17)
 
 //Dark
