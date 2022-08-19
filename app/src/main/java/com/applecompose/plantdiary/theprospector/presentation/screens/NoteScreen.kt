@@ -1,5 +1,6 @@
 package com.applecompose.plantdiary.theprospector.presentation.screens
 
+import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.applecompose.plantdiary.theprospector.R
 import com.applecompose.plantdiary.theprospector.data.NoteDataDummy
 import com.applecompose.plantdiary.theprospector.data.model.Note
+import com.applecompose.plantdiary.theprospector.maps.MyGoogleMap
 import com.applecompose.plantdiary.theprospector.presentation.components.NoteInputText
 import com.applecompose.plantdiary.theprospector.presentation.components.NoteRow
 import com.applecompose.plantdiary.theprospector.ui.theme.TheProspectorTheme
@@ -43,6 +45,7 @@ fun NoteScreen(
 	var title by remember { mutableStateOf("") }
 	var description by remember { mutableStateOf("") }
 	val context = LocalContext.current
+	val localContext = LocalContext.current
 
 	Column(
 		modifier = Modifier
@@ -87,6 +90,7 @@ fun NoteScreen(
 				modifier = Modifier
 					.padding(end = 16.dp)
 					.clickable {
+						localContext.startActivity(Intent(localContext, MyGoogleMap::class.java))
 
 					}
 				)
