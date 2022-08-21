@@ -31,7 +31,7 @@
             </intent-filter>
 
         </activity>
-
+        <activity android:name=".maps.MyGoogleMap"/>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="${GMP_KEY}"/>

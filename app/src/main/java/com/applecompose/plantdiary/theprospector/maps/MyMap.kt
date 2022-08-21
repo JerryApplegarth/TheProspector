@@ -13,9 +13,11 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.rememberCameraPositionState
 
 
+
+
 class MyGoogleMap : ComponentActivity() {
 
-	//private val viewModel : NoteViewModel by viewModel<NoteViewModel>()
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
