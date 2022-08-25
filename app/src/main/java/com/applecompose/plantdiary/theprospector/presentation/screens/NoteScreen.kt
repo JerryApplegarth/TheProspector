@@ -44,6 +44,8 @@ fun NoteScreen(
 
 	var title by remember { mutableStateOf("") }
 	var description by remember { mutableStateOf("") }
+	var latitude by remember { mutableStateOf("")}
+	var longitude by remember { mutableStateOf("")}
 	val context = LocalContext.current
 	val localContext = LocalContext.current
 
@@ -118,15 +120,35 @@ fun NoteScreen(
 				.fillMaxWidth()
 				.padding(top = 6.dp, bottom = 6.dp)
 				.padding(6.dp),
-
-
 			text = description,
 			label = "Describe the Prospect",
 			onTextChange = {
 				description = it
 			},
-
 		)
+		NoteInputText(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(top = 6.dp, bottom = 6.dp)
+				.padding(6.dp),
+			text = latitude,
+			label = "Latitude",
+			onTextChange = {
+				latitude = it
+			},
+		)
+		NoteInputText(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(top = 6.dp, bottom = 6.dp)
+				.padding(6.dp),
+			text = longitude,
+			label = "Longitude",
+			onTextChange = {
+				longitude = it
+			},
+		)
+
 		// my cards goes here a lazy column
 		Row(
 			modifier = Modifier
@@ -141,17 +163,26 @@ fun NoteScreen(
 				contentDescription = "Save icon",
 				modifier = Modifier
 					.clickable {
-						if (title.isNotEmpty() && description.isNotEmpty()) {
+						if (title.isNotEmpty() && description.isNotEmpty()
+							&& latitude.isNotEmpty() && longitude.isNotEmpty()) {
 							onAddNote(
 								Note(
 									title = title,
-									description = description
+									description = description,
+									latitude = latitude,
+									longitude = longitude
+
 								)
 							)
 							title = ""
 							description = ""
+							latitude = ""
+							longitude = ""
 							Toast.makeText(
-								context, "Your prospect was added",
+								context, "Your $title, " +
+										"$description, " +
+										"$latitude and " +
+										"$longitude was added",
 								Toast.LENGTH_SHORT
 							).show()
 						}
@@ -187,7 +218,9 @@ fun NoteScreen(
 						onEditNote(
 							Note(
 								title = title + textState.value.toString(),
-								description = description + textState.value.toString()
+								description = description + textState.value.toString(),
+								latitude = latitude + textState.value.toString(),
+								longitude = longitude + textState.value.toString()
 							)
 						)
 						title = ""

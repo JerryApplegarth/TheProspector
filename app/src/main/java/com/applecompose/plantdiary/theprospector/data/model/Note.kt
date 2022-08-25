@@ -17,6 +17,12 @@ data class Note(
 	@ColumnInfo(name = "note_description")
 	val description: String,
 
+	@ColumnInfo(name = "latitude")
+	val latitude: String,
+
+	@ColumnInfo(name = "longitude")
+	val longitude: String,
+
 	@ColumnInfo(name = "note_entry_date")
 	val entryDate: Date = Date.from(Instant.now())
 )

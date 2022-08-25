@@ -50,6 +50,15 @@ fun NoteRow(
 				style = MaterialTheme.typography.subtitle1
 			)
 			Text(
+				text = note.latitude,
+				style = MaterialTheme.typography.subtitle1
+			)
+			Text(
+				text = note.longitude,
+				style = MaterialTheme.typography.subtitle1
+			)
+
+			Text(
 				text = formatDate(note.entryDate.time),
 				style = MaterialTheme.typography.caption
 			)

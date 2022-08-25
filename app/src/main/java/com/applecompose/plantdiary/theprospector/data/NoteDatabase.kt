@@ -7,7 +7,7 @@ import com.applecompose.plantdiary.theprospector.data.model.Note
 import com.applecompose.plantdiary.theprospector.utils.DateConverter
 import com.applecompose.plantdiary.theprospector.utils.UUIDConverter
 
-@Database(entities = [Note::class], version = 1, exportSchema = false)
+@Database(entities = [Note::class], version = 2, exportSchema = false)
 @TypeConverters(DateConverter::class, UUIDConverter::class)
 abstract class NoteDatabase: RoomDatabase() {
 
