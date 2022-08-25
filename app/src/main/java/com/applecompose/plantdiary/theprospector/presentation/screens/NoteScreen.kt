@@ -61,7 +61,6 @@ fun NoteScreen(
 		)
 		Spacer(modifier = Modifier.height(6.dp))
 		Text(text = stringResource(R.string.add_a_new_prospect))
-		//Spacer(modifier = Modifier.height(6.dp))
 		Row(
 			horizontalArrangement = Arrangement.SpaceBetween,
 			verticalAlignment = Alignment.CenterVertically,
@@ -69,15 +68,14 @@ fun NoteScreen(
 		) {
 			Column(
 				modifier = Modifier
-					.padding(12.dp)
+					.padding(8.dp)
 			) {
 				Text(text = "Latitude: ")
 				Text(text = "Longitude: ")
-
 			}
 			Icon(
 				imageVector = Icons.Default.Map,
-				contentDescription = "Map icon",
+				contentDescription = stringResource(R.string.map_icon),
 				modifier = Modifier
 					.padding(end = 16.dp)
 					.clickable {
@@ -105,7 +103,7 @@ fun NoteScreen(
 				.fillMaxWidth()
 				.padding(bottom = 6.dp, start = 6.dp, end = 12.dp),
 			text = description,
-			label = "Describe the Prospect",
+			label = stringResource(R.string.describe_the_prospect),
 			onTextChange = {
 				description = it
 			},
@@ -115,7 +113,7 @@ fun NoteScreen(
 				.fillMaxWidth()
 				.padding(bottom = 6.dp, end = 12.dp),
 			text = latitude,
-			label = "Latitude",
+			label = stringResource(R.string.latitude),
 			onTextChange = {
 				latitude = it
 			},
@@ -125,13 +123,11 @@ fun NoteScreen(
 				.fillMaxWidth()
 				.padding(bottom = 6.dp, end = 12.dp),
 			text = longitude,
-			label = "Longitude",
+			label = stringResource(R.string.longitude),
 			onTextChange = {
 				longitude = it
 			},
 		)
-
-		// my cards goes here a lazy column
 		Row(
 			modifier = Modifier
 				.fillMaxWidth()
@@ -142,7 +138,7 @@ fun NoteScreen(
 
 			Icon(
 				imageVector = Icons.Default.Save,
-				contentDescription = "Save icon",
+				contentDescription = stringResource(R.string.save_icon),
 				modifier = Modifier
 					.clickable {
 						if (title.isNotEmpty() && description.isNotEmpty()
@@ -153,7 +149,6 @@ fun NoteScreen(
 									description = description,
 									latitude = latitude,
 									longitude = longitude
-
 								)
 							)
 							title = ""
@@ -171,7 +166,7 @@ fun NoteScreen(
 					}
 			)
 			Text(
-				text = "Add a picture ",
+				text = stringResource(R.string.add_a_picture),
 				modifier = Modifier
 					.padding(end = 48.dp)
 					.width(200.dp),
@@ -179,13 +174,11 @@ fun NoteScreen(
 			)
 			Icon(
 				imageVector = Icons.Default.PictureInPicture,
-				contentDescription = "Add Picture",
+				contentDescription = stringResource(R.string.add_picture),
 				modifier = Modifier
 					.clickable {
-
 					}
 			)
-
 		}
 		Divider(color = MaterialTheme.colors.primary, thickness = 2.dp)
 		Spacer(modifier = Modifier.height(6.dp))
