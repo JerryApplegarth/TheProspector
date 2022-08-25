@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">The Prospector</string>
+    <string name="add_a_new_prospect">\"Add a New Prospect: \"</string>
+    <string name="title_of_prospect">Title of Prospect</string>
 </resources>

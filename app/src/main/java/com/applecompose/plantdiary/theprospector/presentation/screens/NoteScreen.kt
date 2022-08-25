@@ -35,24 +35,20 @@ fun NoteScreen(
 	onAddNote: (Note) -> Unit,
 	onRemoveNote: (Note) -> Unit,
 	onEditNote: (Note) -> Unit
-
 ) {
-
 	val textState = remember {
 		mutableStateOf(TextFieldValue)
 	}
-
 	var title by remember { mutableStateOf("") }
 	var description by remember { mutableStateOf("") }
 	var latitude by remember { mutableStateOf("")}
 	var longitude by remember { mutableStateOf("")}
 	val context = LocalContext.current
 	val localContext = LocalContext.current
-
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
-			.padding(12.dp)
+			.padding(start = 12.dp)
 			.background(MaterialTheme.colors.background),
 		horizontalAlignment = Alignment.Start,
 		verticalArrangement = Arrangement.Top
@@ -63,21 +59,14 @@ fun NoteScreen(
 			},
 			backgroundColor = MaterialTheme.colors.primary
 		)
-
-		Divider(
-			color = MaterialTheme.colors.primary,
-			thickness = 2.dp
-		)
 		Spacer(modifier = Modifier.height(6.dp))
-		Text(text = "New Prospect: ")
-		Spacer(modifier = Modifier.height(12.dp))
+		Text(text = stringResource(R.string.add_a_new_prospect))
+		//Spacer(modifier = Modifier.height(6.dp))
 		Row(
-
 			horizontalArrangement = Arrangement.SpaceBetween,
 			verticalAlignment = Alignment.CenterVertically,
 			modifier = Modifier.fillMaxWidth()
 		) {
-
 			Column(
 				modifier = Modifier
 					.padding(12.dp)
@@ -93,13 +82,9 @@ fun NoteScreen(
 					.padding(end = 16.dp)
 					.clickable {
 						localContext.startActivity(Intent(localContext, MyGoogleMap::class.java))
-
 					}
 				)
-
 		}
-
-		//input text goes here
 		Divider(
 			color = MaterialTheme.colors.primary,
 			thickness = 2.dp
@@ -107,10 +92,10 @@ fun NoteScreen(
 		NoteInputText(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(top = 6.dp)
+				.padding(end = 6.dp)
 				.padding(6.dp),
 			text = title,
-			label = "Title of Prospect",
+			label = stringResource(R.string.title_of_prospect),
 			onTextChange = {
 				title = it
 			}
@@ -118,8 +103,7 @@ fun NoteScreen(
 		NoteInputText(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(top = 6.dp, bottom = 6.dp)
-				.padding(6.dp),
+				.padding(bottom = 6.dp, start = 6.dp, end = 12.dp),
 			text = description,
 			label = "Describe the Prospect",
 			onTextChange = {
@@ -129,8 +113,7 @@ fun NoteScreen(
 		NoteInputText(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(top = 6.dp, bottom = 6.dp)
-				.padding(6.dp),
+				.padding(bottom = 6.dp, end = 12.dp),
 			text = latitude,
 			label = "Latitude",
 			onTextChange = {
@@ -140,8 +123,7 @@ fun NoteScreen(
 		NoteInputText(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(top = 6.dp, bottom = 6.dp)
-				.padding(6.dp),
+				.padding(bottom = 6.dp, end = 12.dp),
 			text = longitude,
 			label = "Longitude",
 			onTextChange = {
@@ -154,7 +136,7 @@ fun NoteScreen(
 			modifier = Modifier
 				.fillMaxWidth()
 				.padding(6.dp)
-				.padding(16.dp, end = 16.dp),
+				.padding(end = 16.dp),
 			horizontalArrangement = Arrangement.SpaceBetween
 		) {
 
